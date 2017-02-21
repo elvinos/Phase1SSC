@@ -17,17 +17,21 @@ offsetrad = offsetdeg*pi()/180;
 
 nperiod= 4;
 T = (-42.98+61.2)/nperiod;
-wn = 2*pi()/T;
+wd = 2*pi()/T;
 logdec = (1/nperiod)*log((39.22 - offsetdeg) /(29.99 - offsetdeg));
 zeta = logdec/(2*pi());
-wd = wn*sqrt(1-(zeta^2));
+wn = wd/sqrt(1-(zeta^2));
 sigma = zeta*wn;
 top = wn^2;
 
 %% Transfer Function
 
-opt = stepDataOptions('InputOffset',0,'StepAmplitude',0.238);
-sys = tf([top],[1 zeta*2*wn top]);
+opt = stepDataOptions('InputOffset',0,'StepAmplitude',0.26);
+sys = tf([(top-0.79)],[1 (zeta-0.01)*2*wn top-0.79]); %%0.01
+
+%opt = stepDataOptions('InputOffset',0,'StepAmplitude',1);
+%sys = tf([(top-0.85)*0.28],[1 (zeta+0.007)*2*wn top-0.85]); 
+
 [yyrad, tt] = step(sys,opt);
 yydeg = yyrad*180/pi();
 
@@ -41,7 +45,7 @@ ttred = tt(1:177);
 % Change between deg and rad
 figure(2)
 
-plot(ttred,yyred+offsetdeg-yyaveragedeg+1.25);
+plot(ttred,yyred+offsetdeg-yyaveragedeg);
 hold on
 elev40 = meanelev(:,3);
 elev40 = elev40(39860:79851);
