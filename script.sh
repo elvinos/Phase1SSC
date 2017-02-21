@@ -7,7 +7,7 @@ date=`date +"%m-%d-%y-%H%M"`
 cd ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control/Coursework/Phase1/LatestBuild/ReportSections
 
 # Gather the files which together constitute a dissertation into one place. Add Section Files Here/ Aims.md Background.md Content.md > sectionbuild.md
-cat ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control/Coursework/Phase1/LatestBuild/ReportSections/markdown.md > sectionbuild.md
+cat ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control/Coursework/Phase1/LatestBuild/ReportSections/phase1.md > sectionbuild.md
 
 # Copy into the build folder
 cp  sectionbuild.md ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control/Coursework/Phase1/LatestBuild/sectionbuild.md
