@@ -43,30 +43,23 @@ xlabel('Time');
 ylabel('Elevation Angle');
 
 %% Variables
-% topadj=-0.79;
-% zetaadj=-0.01;
-topadj=-0.3;
-zetaadj=-0.04;
-kscale = 1.839;
-kmax = 0.28;
+
+topadj=-0.25;
+zetaadj=-0.005;
+kmax = 0.25;
+grad = 3.533;
+c = 5.4011;
+kdivide = (grad*2+c)./kmax;
+num = [4 1 2 3];
+
 for m=1:4
-%     if m== 1
-%         k(m)= kmax/kscale^2;
-%     
-%     elseif m == 2
-%         k(m)= kmax/kscale;
-%     
-%     elseif m == 3
-%         k(m)= kmax;
-%     else
-%         k(m)= kmax/kscale^3;
-%     end
+n = num(m);
+k(n) = (grad*(m-2)+c)/kdivide;
 end
-% k = [0.0769024700000000,0.141402412000000,0.260000000000000,0.0418238260000000];
-k = [0.096057201	0.196088424	0.265	0.04604159];
+
 xyval= [23.9200000000000,30.4000000000000,39.2200000000000,17.4500000000000;20.1100000000000,24.7200000000000,29.9900000000000,15.8100000000000;42.9100000000000,42.9100000000000,42.9800000000000,42.4000000000000;64.9000000000000,65.7950000000000,61.2000000000000,66];
 nperiod= 4;
-ks = 3;
+
 
 %% Find 4 Transfer Functions
 for m=1:4
@@ -79,7 +72,7 @@ zeta(m) = logdec(m)./(2*pi());
 wn(m) = wd(m)/sqrt(1-(zeta(m)^2));
 sigma(m) = zeta(m)*wn(m);
 top(m) = wn(m)^2;
-sys(m) = tf([(top(m)+topadj)*k(m)],[1 (zeta(m)+zetaadj)*2*wn(m) top(m)+topadj]) %%0.01
+sys(m) = tf([(top(m)+topadj)*k(m)],[1 (zeta(m)+zetaadj)*2*wn(m) top(m)+topadj]);
 [yyrad, tt] = step(sys(m));
 yydeg = yyrad.*180/pi();
 yyred(:,m) = yydeg(1:177);
@@ -101,6 +94,10 @@ zetamean= mean([zeta]);
 wnmean = mean([wn]);
 sigmamean = mean([sigma]);
 topmean = mean([top]);
+%Mean Transfer Fucntion
+sysTF= tf([(topmean+topadj)],[1 (zetamean+zetaadj)*2*wnmean topmean+topadj])
+
+% Loop to find scaled transfer fucntions for different steps
 for m= 1:4
 sysmean(m) = tf([(topmean+topadj)*k(m)],[1 (zetamean+zetaadj)*2*wnmean topmean+topadj]);
 [yyradmean, ttmean] = step(sysmean(m));

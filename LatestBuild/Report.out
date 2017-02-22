@@ -1,4 +1,9 @@
-\BOOKMARK [1][-]{section.1}{Open-Loop\040Behaviour\040of\040the\040Elevation\040Axis}{}% 1
-\BOOKMARK [1][-]{section.2}{Open\040Loop\040Transfer\040Function}{}% 2
-\BOOKMARK [1][-]{section.3}{Estimated\040Responses}{}% 3
-\BOOKMARK [1][-]{section.4}{Analysis\040of\040Transfer\040Functions}{}% 4
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Method\040and\040Results}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Find\040results\040from\040Quansers}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Analyse\040Transfer\040Function}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Second\040Order}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{First\040Order}{subsection.2.2}% 6
+\BOOKMARK [1][-]{section.3}{Results}{}% 7
+\BOOKMARK [1][-]{section.4}{Observations\040and\040Analysis:}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Potential\040Errors}{section.4}% 9

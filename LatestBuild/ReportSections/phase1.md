@@ -1,8 +1,58 @@
+# Introduction
 
-# Open-Loop Behaviour of the Elevation Axis
+# Method and Results
 
-# Open Loop Transfer Function
+## Find results from Quansers
 
-# Estimated Responses
+1. Step block (Start Time: 40s, Start Value: -2, End Value: -1 to 2) - This was used to automate the step input at a specific time for each elevator input test. This block replaced the existing constant value block which feeds into the elevator response.
 
-# Analysis of Transfer Functions
+2. Used range of values, 3 repeats. The elevator input was varied from and initial value of -2 to a range of values from -1 to 2 in steps of 1.
+
+3. The Workspace variables were saved for each repeat - this included pitch, elevator and travel data for each corresponding test.
+
+4. Checked data for anomalies, Averaged repeats for valid results across 4 different step inputs
+
+## Analyse Transfer Function
+
+1. Isolated amplitude values for corresponding times after 40 seconds to 80 seconds. 40 seconds refers to the step input time.
+
+2. A second order sinusoidal decaying function was observed.
+
+3. In order to estimate a transfer function - the following parameters were calculated: Natural frequency, Undamped natural frequency and damping ratio.
+Calculated using a 2nd order forced response function with step input
+
+4. Natural Frequency
+
+5. Undamped Natural Frequency
+
+6. Damping Ratio
+
+### Second Order
+The transfer function for a second order forced response should be as follows: -
+
+Correcting the Transfer function - Matlab’s initial transfer function step estimate showed phase and amplitude deviations from the experimentally obtained result. For this reason the obtained transfer function parameters were tweaked to achieve a closer fit. The parameters that were changed (by small offsets to correct for deviations) in this process include: damping ratio, undamped natural frequency
+
+Due to the multiple steps taken for the Quanser, the response across the different step inputs, the initial transfer functions for each were calculated. These transfer functions were then averaged to give a mean transfer function for the whole system, capturing some of the behaviour of the system as step level varies. ( this is important when observing the results). Finding the mean transfer function meant that only a scaling factor k needs to be applied to get an approximate match for the range of step inputs. To find this value, the max amplitude of the first peak of all the step inputs was recorded. These values were then plotted on a graph to find their correlation/ equation. Through trial and error it was found that for step = 2, k = 0.26, this value was used to translate correlation equation between points into scaling factors. After applying this method, amplitudes for all the steps fitted more closely. Finally damping ratio and undamped natural frequency where tweaked to give the final fit, again by trial and error.
+
+### First Order
+
+
+
+
+# Results
+
+# Observations and Analysis:
+
+* Step input of 2 was used as the datum which the scaling factors of the other steps was matched against. This results in the 2 step graph being a better fit than the others
+
+## Potential Errors
+
+* Accumulated error with time. Whilst the Quansers have error correcting – this is not perfect. So longer the Quansers are run for the greater the accumulated error – may get inconsistent results for longer time periods. This may explain the ‘drift’ behaviour of the Quanser.
+* Whilst a step block used to increase accuracy of step input at the desired time in the Quanser run. The actual elevator input was not exactly at 40s. Accumulated lag in system and controller – computational latency (also effects initial condition which may explain phase difference).
+*  Friction in hinge for Quanser
+* Wires caused partial decrease in deflection  - ‘jamming’
+* There was not an immediate step response, thrust doesn’t follow a step change
+* Noise in system (gyro noise, wind resistance)
+* Sensor sampling was discrete not continuous
+*  As we sampled from -2 elevator the sinusoidal response was not completely damped after 40s – hence the step input at 40s ‘added’ onto the slight ‘upward’ trailing motion
+* Transfer function is N dependent (only two curve peak values were taken into account)
