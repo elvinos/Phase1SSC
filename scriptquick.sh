@@ -47,5 +47,3 @@ tar cfvz ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control
 
 # Rename the archived version, including the date generated.
 mv ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control/Coursework/Phase1/LatestBuild/latest.tar.gz ~/Documents/University/Year\ 4/Sensors\,\ Signals\ and\ Control/Control/Coursework/Phase1/Archive/rep_bu_$date.tar.gz
-
-killall Terminal

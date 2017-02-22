@@ -16,6 +16,62 @@
   {}
 \endgroup
 
+\entry{openloop}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Tutorials}{T.}%
+     {Electronics}{E.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{TE1}
+  \strng{fullhash}{TE1}
+  \field{title}{Open-loop System and Open-loop Control Systems}
+  \verb{url}
+  \verb http://www.electronics-tutorials.ws/systems/open-loop-system.html
+  \endverb
+  \field{urlday}{22}
+  \field{urlmonth}{02}
+  \field{urlyear}{2017}
+\endentry
+
+\entry{vibnote}{report}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Titurus}{T.}%
+     {Dr~Branislav}{D.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{TDB1}
+  \strng{fullhash}{TDB1}
+  \field{title}{Vibrations 2 Lab Notes - Tuned Vibration Absorber}
+  \list{institution}{1}{%
+    {University of Bristol}%
+  }
+  \field{type}{techreport}
+  \field{year}{2016}
+\endentry
+
+\entry{vibnote2}{report}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Titurus}{T.}%
+     {Dr~Branislav}{D.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{TDB1}
+  \strng{fullhash}{TDB1}
+  \field{title}{Vibrations 2 Lecture Notes - 2 Degree of Freedom, Tuned
+  Vibration Absorber}
+  \list{institution}{1}{%
+    {University of Bristol}%
+  }
+  \field{type}{techreport}
+  \field{year}{2016}
+\endentry
+
 \lossort
 \endlossort
 
