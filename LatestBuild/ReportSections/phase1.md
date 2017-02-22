@@ -1,9 +1,9 @@
 # Introduction and Open Loop Discussion
 
-\begin{wrapfigure}{r}{0.45\textwidth}
+\begin{wrapfigure}{r}{0.55\textwidth}
   \begin{center}
   \vspace{-20pt}
-  \includegraphics[trim = 50 20 50 10, clip, width=0.44\textwidth]{intrograph.pdf}
+  \includegraphics[trim = 50 20 50 10, clip, width=0.54\textwidth]{intrograph.pdf}
   \end{center}
   \caption{Graph Showing the Open Loop Nature of the Experimental Quanser Response}
   \label{intrograph}
@@ -16,32 +16,20 @@ An Open-Loop system is a where behavioural characteristics can be controlled man
 
 # Method and Results
 
-\begin{wrapfigure}{r}{0.45\textwidth}
-  \vspace{0pt}
-\captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
-  \begin{center}
-  \includegraphics[trim = 0 0 0 0, clip, width=0.4\textwidth]{eqtable.pdf}
-\end{center}
-\label{eqtable}
-  \vspace{0pt}
-\end{wrapfigure}
-
 ## Finding Experimentation Results from Quansers
 
-\begin{minipage}{.45\textwidth}
-      \begin{enumerate}[itemsep=0pt]
-        \item Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
+1. Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
 
-        \item Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
+2. Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
 
-        \item Check data for anomalies, Averaged repeats for valid results across the different step inputs.
+3. Check data for anomalies, Averaged repeats for valid results across the different step inputs.
 
-      \end{enumerate}
-    \end{minipage}
-    \begin{minipage}{.45\textwidth}
-      \includegraphics[scale=0.5]{Exam1_Fig1.jpg}
-    \end{minipage}
-  \end{enumerate}
+\begin{figure}[H]
+\captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
+\centering
+\includegraphics[trim = 0 0 0 0, clip, width=0.58\textwidth]{eqtable.pdf}
+\label{eqtable}
+\end{figure}
 
 ## Analyse Transfer Function
 
@@ -53,20 +41,19 @@ An Open-Loop system is a where behavioural characteristics can be controlled man
 To calculate the Second Order Transfer-Function, a forced response behaviour was noted. Using Table \ref{eqtable} equations \cite{vibnote} \cite{vibnote2}, in addition to the x and y values taken from the peaks highlighted in figure \ref{intrograph} the logarithmic decrement and the period of damp oscillation was approximated. Using these equations values for the damping ratio $\zeta$ and natural frequency $\omega_n$ were obtained and substituted into the formal equation shown in equation \ref{2otf}.
 
 \begin{align}
-\frac{ y(s) }{ u(s) } &=\frac{ k\cdot \omega_{ n }^{ 2 } }{ s^{ 2 }+2\zeta \omega_{ n }s+\omega_{ n }^{ 2 } }
-\label{2otsf}
+\frac{ y(s) }{ u(s) } &=\frac{ k\cdot \omega_{ n }^{ 2 } }{ s^{ 2 }+2\zeta \omega_{ n }s+\omega_{ n }^{ 2 } } \label{2otf}
 \end{align}
 
 In order to obtain a single transfer function which represents the system as a whole for varying elevators angle steps, estimated transfer functions were found for each test case. These parameters were then averaged obtaining a single fit transfer function where gain was changed to model different elevator angle step inputs. This captured some of the behaviour of the system as step level varied.
 
 \begin{wrapfigure}{r}{0.5\textwidth}
   \begin{center}
-  \vspace{0pt}
+  \vspace{-20pt}
 \includegraphics[trim = 10 10 10 10, clip, width=0.49\textwidth]{kgraph.pdf}  
 \end{center}
 \caption{Graph Finding the Gain For Each Step Input}
 \label{kgraph}
-  \vspace{0pt}
+  \vspace{-15pt}
 \end{wrapfigure}
 
 To calculated the a representative gain scaling factor $k$ for each of the step inputs, max elevation for each step input was taken (from the first peak shown in Figure \ref{intrograph}). These values were plotted on a graph to find their correlation, shown in figure \ref{kgraph}. The gain $k$ value was heuristically adjusting to match the estimated amplitude with the experimental results from -2 to 2, where it was found that $k = 0.26$. This value was used to translate the correlation equation between points into scaling factors.
@@ -122,42 +109,61 @@ Due to the Quanser-Control Rig being a Second Order System Equation \ref{fos} wa
   \caption{1st Order Simualted Transfer Function Comparision}
   \label{1stTFcomp}
 \end{minipage}
+\vspace{-11pt}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.49\textwidth}
+Second Order Step Information:
+\begin{align*}
+t_r &= 1.0385 &&t_s = 57.3382
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}{.49\textwidth}
+First Order Step Information:
+\begin{align*}
+t_r &= 4.1719 &&t_s = 7.4287
+\end{align*}
+\end{minipage}
+\vspace{-11pt}
 \end{figure}
 
 # Observations and Analysis:
 
-Experimental elevator input
+## Experimental Elevator Input:
 
-* Step input of 2 was used as the datum which the scaling factors of the other steps was matched against. This results in the 2 step graph being a better fit than the others
-* There is an observable phase and amplitude deviation
-* Peak amplitude prediction becomes worse for lower amplitude cases
-* The upper experimental oscillations were slightly larger than the lower oscillations
+* There is an observable phase and amplitude deviation, particularly after the third peak. The phase shift becomes increasingly out of phase as the initial step input is reduced.
+* Peak amplitude prediction becomes worse for lower amplitude cases, however there is a very good match for 0,1 and 2 test cases first three peaks, the k value equation provided a good match. Note this equation was set heuristically to a step input of 2.
+* The oscillations around the expected steady level were slightly larger above the steady state level rather than below. This could be an artefact of the Quanser accumulating elevation drift.
+* Steady state values match well for an elevator input of 0 and 1, however are noticeably different for -1 and 2.
 
-\begin{wrapfigure}{r}{0.45\textwidth}
-  \begin{center}
-  \vspace{0pt}
-  \includegraphics[trim = 35 14 35 0, clip, width=0.5\textwidth]{poleszmap.eps}
-  \end{center}
-  \caption{Map of the Poles}
- \label{poleszmap}
-  \vspace{-25pt}
-\end{wrapfigure}
-
-Root Locus plot
+## Root-Locus plot (See Figure \ref{poleszmap})
 
 * The grid lines represent lines of constant damping and lines of natural frequency
-* Second order transfer function root locus has a pair of points with an imaginary axis component (complex root)  - This shows the underdamped nature of the system as 0<zeta<1
-* First order transfer function Root locus point exists purely in the real axis component.
-* Increase in gain for the second order shows these roots becoming more positive and negative in the imaginary axis respectively
-* Increase in gain for the first order shows the root becoming more negative along the real axis
+* The Second Order Transfer Function Root-Locus has a pair of points with an imaginary axis component (complex root)  - This shows the stable underdamped nature of the system as $0<\zeta<1$
+* The First Order Transfer Function Root-Locus diagram point exists purely in the real axis component, meaning the function is critically damped as expected and stable.
+* Increase in gain for the Second Order shows the roots becoming more positive and negative in the imaginary axis respectively
+* Increase in gain for the First Order shows the root becoming more negative along the real axis
+
+# Discussion
+
+\begin{wrapfigure}{r}{0.56\textwidth}
+  \begin{center}
+  \vspace{-40pt}
+  \includegraphics[trim = 35 14 35 0, clip, width=0.55\textwidth]{poleszmap.eps}
+  \end{center}
+  \caption{Map of the Poles, sysTF1 = First Order, sysTF2 = Second Order}
+ \label{poleszmap}
+  \vspace{-20pt}
+\end{wrapfigure}
 
 
-## Potential Errors
+ Observing Figure \ref{2ndTFcomp} and \ref{1stTFcomp} many deviation's from MATLAB’s theoretical transfer function step response were observed. During the Quanser operation, a significant observable error was the drift in the Quanser, more noticeable during longer runs; potentially due to accumulating error increasing with time. Whilst the Quansers have error correcting features (through the closed-loop nature of the other parameters), this is only sensitive to a finite degree so could be considered imperfect. An initial elevator input was set to -2 (to get the fans running), and then after 40 seconds an elevator step was input into the system. As a result the step input may have been applied during mid oscillation past the steady state elevation position; this likely either amplified or decreased the actual step input depending on which stage of oscillation the Quanser was at. A 40 seconds run reduced the steady-state level to 10-20% of the steady state value. Errors may accumulate for a greater run time as the system fails to accurately correct for inconsistencies.
 
- During the quanser operation, a significant observable error was the drift in the quanser– this was more noticeable when during longer runs. This is potentially due to accumulating error increasing with time duration. Whilst the Quansers have error correcting features – this is only sensitive to a finite degree so could be considered imperfect. This implies errors may accumulate for a greater run time as the system fails to accurately correct for inconsistencies. Another source of deviation from MATLAB’s theoretical transfer function step response - could be the inaccuracy in step input time. Whilst a step block was introduced in the simulink model to automate the ‘elevator input’ at 40 seconds - upon closer observation of the response plots, this was not the case. This was potentially due to accumulated lag in the system and the controller - as a result of computational latency. As a result this likely influenced the initial condition - causing a phase and amplitude shift in experimental results. Another effect of this is; the introduction of error in logarithmic decrement and period of damped frequency calculation as peak points were potentially taken from ‘error’ shifted values. In theory the step input is modelled as an immediate action - whilst experimentally  the step response acted over time - this adds to the error shift of the values.
+ Another source of deviation is inaccuracy in step input time. In theory the step input is modelled as an immediate action. A step block was introduced in the Simulink model to automate the ‘elevator input’ at 40 seconds, however closer observation of the corresponding pitch and travel data plots revealed a slight delay. Accumulated lag in the system and controller and a delayed response time both contributed to latency. Latency causes a phase and amplitude shift in experimental results, as well as introducing error in parameters such as the logarithmic decrement $\Lambda_i$ and damped frequency $\omega_d$ calculations.
 
-Physically when the Quanser was in operation, there were physical factors to consider when exploring the errors. Friction in the Quanser support hinge potentially resulted in a slightly decreased elevation than desired - this adds to the natural damping response of the system and may explain why the experimental curves in Figure(?) are more compacted time wise than the MATLAB transfer function step plot. However it is useful to note that the MATLAB transfer function was estimated by averaging test cases and hence is derived empirically. The slightly decreased elevation is also compounded by physical wires in the rig which acted as a small ‘jamming’ mechanism to the system.
+From a mechanical perspective, friction in the Quanser hinge support and tension from the power cables resulted in a reduction in expected elevation. This adds to the natural damping of the system, one explaining for the compacted peaks in experimental data (see Figure \ref{2ndTFcomp}), and could explain some variation in repeats which was larger than would be expected for a fixed experiment.
 
-As with any control system, noise can be introduced by external and internal factors. In the Quanser system  - gyro noise and wind resistance were major factors.  Sensors in any system measure quantities which need to be controlled - in this case the elevator sensor sampling was stored values at discrete points. Whilst the sampling time was quite small so captured the general nature of the oscillating damped curves - some critical points may have been missed due to this for example at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Theoretically we see a quicker inflexion transition in this region. see Figure ()?.                     
-
-Due to the instruction of never taking a step from the ‘fans off’ position (as there are high nonlinear effects during startup) - the initial elevator input was set to -2 (to get the fans running) and then after 40 seconds a elevator step was input into the system. For this reason the step input may have been applied during mid oscillation past the steady state elevation position - this likely either amplified or decreased the actual step input depending on which stage of oscillation the quanser is at.
+As with any control system, noise can be introduced by external and internal factors. In the Quanser system, gyro noise and wind resistance are contributing factors.  Sensors in any system measure quantities which need to be controlled - in this case the elevator sensor sampling was storing values at discrete points. Whilst the sampling time was quite small, capturing the general nature of the oscillating damped curves, some critical points may have been missed. An example can be observed at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Computationally we see a quicker inflexion transition in this region.
