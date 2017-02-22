@@ -15,11 +15,8 @@ krad = k*pi()/180;
 offsetdeg = elevaverage;
 offsetrad = offsetdeg*pi()/180;
 
-k= [0.0769024700000000,0.141402412000000,0.260000000000000,0.0418238260000000];
-xyval= [23.9200000000000,30.4000000000000,39.2200000000000,17.4500000000000;20.1100000000000,24.7200000000000,29.9900000000000,15.8100000000000;42.9100000000000,42.9100000000000,42.9800000000000,42.4000000000000;64.9000000000000,65.7950000000000,61.2000000000000,66];
-
 nperiod= 4;
-T = (xyval(4,3)-xyval(3,3))/nperiod;
+T = (-42.98+61.2)/nperiod;
 wd = 2*pi()/T;
 logdec = (1/nperiod)*log((39.22 - offsetdeg) /(29.99 - offsetdeg));
 zeta = logdec/(2*pi());
@@ -29,13 +26,11 @@ top = wn^2;
 
 %% Transfer Function
 
-% opt = stepDataOptions('InputOffset',0,'StepAmplitude',0.238);
-% sys = tf([top],[1 zeta*2*wn top]);
 
-opt = stepDataOptions('InputOffset',0,'StepAmplitude',0.26);
-sys = tf([(top-0.79)],[1 (zeta+0.007)*2*wn top-0.79]); %%0.01
+sys = tf([(top-0.79)*0.26],[1 (zeta-0.01)*2*wn top-0.79]); %0.01
+%sys = tf([(top)],[1 (zeta)*2*wn top]); %0.01
 
-[yyrad, tt] = step(sys,opt);
+[yyrad, tt] = step(sys);
 yydeg = yyrad*180/pi();
 
 % figure(1);5
@@ -58,6 +53,32 @@ time = 0:tp:40;
 plot(time,elev40);
 % plot([0 elevaverage], [time(end) elevaverage]);
 
+%%First order response
+
+tau = 1/(zeta*wn)-1;
+
+
+%t=0:tau:20*tau;
+%plot(t, yn,'b');
+% fo = tf([1]*0.21,[tau 1]);
+% [mm rr] = step(fo);
+% mmdeg = mm*(180/pi());
+% mmdegshift = mmdeg;
+%plot(rr, mmdegshift+14.48606);
+
+fo = tf([(top)*0.25],[(1)*2*wn top])
+[mm rr] = step(fo);
+mmdeg = mm*(180/pi());
+mmdegshift = mmdeg+12-0.1032;
+
+mmdegshift(197,1) = 26.2168;
+rr(197,1) = 50;
+% for j = 197:1:400 
+%     mmdegshift(j) = 26.2168;
+%     j = j+1;
+% end    
+plot(rr, mmdegshift);
+xlim([0,40])
 %% Underdamped Y plot
 % i = 0;
 % for t = 0:0.001:40
@@ -71,3 +92,5 @@ plot(time,elev40);
 %  hold on
 % % plot(elev3time,meanelev(:,3));
 %  plot(time,elev40);
+
+
