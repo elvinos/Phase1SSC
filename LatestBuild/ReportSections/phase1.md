@@ -167,3 +167,5 @@ t_r &= 4.1719 &&t_s = 7.4287
 From a mechanical perspective, friction in the Quanser hinge support and tension from the power cables resulted in a reduction in expected elevation. This adds to the natural damping of the system, one explaining for the compacted peaks in experimental data (see Figure \ref{2ndTFcomp}), and could explain some variation in repeats which was larger than would be expected for a fixed experiment.
 
 As with any control system, noise can be introduced by external and internal factors. In the Quanser system, gyro noise and wind resistance are contributing factors.  Sensors in any system measure quantities which need to be controlled - in this case the elevator sensor sampling was storing values at discrete points. Whilst the sampling time was quite small, capturing the general nature of the oscillating damped curves, some critical points may have been missed. An example can be observed at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Computationally we see a quicker inflexion transition in this region.
+
+hello
