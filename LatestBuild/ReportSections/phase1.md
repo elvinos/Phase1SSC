@@ -1,35 +1,42 @@
 # Introduction and Open Loop Discussion
 
-\begin{wrapfigure}{r}{0.55\textwidth}
+\begin{wrapfigure}{r}{0.62\textwidth}
   \begin{center}
   \vspace{-20pt}
-  \includegraphics[trim = 50 20 50 10, clip, width=0.54\textwidth]{intrograph.pdf}
+  \includegraphics[trim = 150 60 180 20, clip, width=0.615\textwidth]{intrograph.pdf}
   \end{center}
   \caption{Graph Showing the Open Loop Nature of the Experimental Quanser Response}
   \label{intrograph}
   \vspace{-15pt}
 \end{wrapfigure}
 
-This report compares the experimental and theoretical transfer functions of 3 degree of freedom Quanser-Control rig.  Control design is important to understand the behaviour of a dynamic system, and then improve the performance. Sensors and actuators are used in the Quanser to measure and vary performance characteristics of the Quanser. In this case, an elevation change was introduced to the Quanser in order to observe an oscillating damped behaviour. Measuring this response a theoretical transfer function was then estimated.
+This report compares the experimental and analytical transfer functions of a 3-degrees-of-freedom Quanser-Control rig.  Control system design is important in understanding the behaviour of dynamic systems, to improve the performance. Sensors and actuators are used in the Quanser to measure and vary performance characteristics of the Quanser. In this experiment, an elevation angle change was introduced to the Quanser revealing an oscillating damped behaviour. Measuring this response an empirical transfer function was then created, to closely match the observed behaviour.
 
-An Open-Loop system is a where behavioural characteristics can be controlled manually. These changes are not feedback into the system, therefore the output has no effect on the input of the system \cite{openloop} meaning self-correction is not possible. In the case of the Quanser-Control Rig, elevation angle was independent of the output and manually controlled, whereas pitch and travel data was manually feedback to the system. Figure \ref{intrograph} shows the open loop behaviour of the elevation axis, as the elevation angle was varied between 10 and 40 degrees.
+An Open-Loop system is a where behavioural characteristics can be controlled manually. These changes are not fed back into the system, therefore the output has no effect on the input of the system \cite{openloop}; meaning self-correction is not possible. In the case of the Quanser-Control Rig, elevation angle was independent of the output and was manually controlled, whereas pitch and travel data was manually fed back to the system. Figure \ref{intrograph} shows the open loop behaviour of the elevation axis, as the elevation angle was varied between 10 and 40 degrees.
 
 # Method and Results
 
 ## Finding Experimentation Results from Quansers
 
-1. Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
-
-2. Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
-
-3. Check data for anomalies, Averaged repeats for valid results across the different step inputs.
-
-\begin{figure}[H]
-\captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=0.58\textwidth]{eqtable.pdf}
+\begin{enumerate}
+  \item
+    \parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+      \vspace{-3mm}
+      \begin{wrapfigure}{r}{0.6\textwidth}
+      \vspace{-10pt}
+        \centering
+        \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
+\includegraphics[trim = 0 0 0 0, clip, width=\linewidth]{eqtable.pdf}
 \label{eqtable}
-\end{figure}
+\vspace{-25pt}
+      \end{wrapfigure}
+      Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
+      \vspace{3mm}
+      \item Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
+      \vspace{3mm}
+      \item Check data for anomalies, Averaged repeats for valid results across the different step inputs.
+    }
+  \end{enumerate}
 
 ## Analyse Transfer Function
 
@@ -168,4 +175,4 @@ From a mechanical perspective, friction in the Quanser hinge support and tension
 
 As with any control system, noise can be introduced by external and internal factors. In the Quanser system, gyro noise and wind resistance are contributing factors.  Sensors in any system measure quantities which need to be controlled - in this case the elevator sensor sampling was storing values at discrete points. Whilst the sampling time was quite small, capturing the general nature of the oscillating damped curves, some critical points may have been missed. An example can be observed at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Computationally we see a quicker inflexion transition in this region.
 
-hello
+\newpage

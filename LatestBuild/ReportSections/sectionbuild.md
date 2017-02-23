@@ -1,9 +1,9 @@
 # Introduction and Open Loop Discussion
 
-\begin{wrapfigure}{r}{0.55\textwidth}
+\begin{wrapfigure}{r}{0.62\textwidth}
   \begin{center}
   \vspace{-20pt}
-  \includegraphics[trim = 50 20 50 10, clip, width=0.54\textwidth]{intrograph.pdf}
+  \includegraphics[trim = 150 60 180 20, clip, width=0.615\textwidth]{intrograph.pdf}
   \end{center}
   \caption{Graph Showing the Open Loop Nature of the Experimental Quanser Response}
   \label{intrograph}
@@ -18,18 +18,25 @@ An Open-Loop system is a where behavioural characteristics can be controlled man
 
 ## Finding Experimentation Results from Quansers
 
-1. Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
-
-2. Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
-
-3. Check data for anomalies, Averaged repeats for valid results across the different step inputs.
-
-\begin{figure}[H]
-\captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=0.58\textwidth]{eqtable.pdf}
+\begin{enumerate}
+  \item
+    \parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+      \vspace{-3mm}
+      \begin{wrapfigure}{r}{0.6\textwidth}
+      \vspace{-10pt}
+        \centering
+        \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
+\includegraphics[trim = 0 0 0 0, clip, width=\linewidth]{eqtable.pdf}
 \label{eqtable}
-\end{figure}
+\vspace{-25pt}
+      \end{wrapfigure}
+      Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
+      \vspace{3mm}
+      \item Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
+      \vspace{3mm}
+      \item Check data for anomalies, Averaged repeats for valid results across the different step inputs.
+    }
+  \end{enumerate}
 
 ## Analyse Transfer Function
 
@@ -167,3 +174,5 @@ t_r &= 4.1719 &&t_s = 7.4287
 From a mechanical perspective, friction in the Quanser hinge support and tension from the power cables resulted in a reduction in expected elevation. This adds to the natural damping of the system, one explaining for the compacted peaks in experimental data (see Figure \ref{2ndTFcomp}), and could explain some variation in repeats which was larger than would be expected for a fixed experiment.
 
 As with any control system, noise can be introduced by external and internal factors. In the Quanser system, gyro noise and wind resistance are contributing factors.  Sensors in any system measure quantities which need to be controlled - in this case the elevator sensor sampling was storing values at discrete points. Whilst the sampling time was quite small, capturing the general nature of the oscillating damped curves, some critical points may have been missed. An example can be observed at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Computationally we see a quicker inflexion transition in this region.
+
+\newpage

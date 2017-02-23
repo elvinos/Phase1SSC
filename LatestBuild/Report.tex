@@ -403,10 +403,10 @@
 \section{Introduction and Open Loop
 Discussion}\label{introduction-and-open-loop-discussion}
 
-\begin{wrapfigure}{r}{0.55\textwidth}
+\begin{wrapfigure}{r}{0.62\textwidth}
   \begin{center}
   \vspace{-20pt}
-  \includegraphics[trim = 50 20 50 10, clip, width=0.54\textwidth]{intrograph.pdf}
+  \includegraphics[trim = 150 60 180 20, clip, width=0.615\textwidth]{intrograph.pdf}
   \end{center}
   \caption{Graph Showing the Open Loop Nature of the Experimental Quanser Response}
   \label{intrograph}
@@ -438,29 +438,24 @@ between 10 and 40 degrees.
 Quansers}\label{finding-experimentation-results-from-quansers}
 
 \begin{enumerate}
-
-\item
-  Replace the elevator input with a step block, using the parameters:
-  Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to
-  automate the step input at a specific time for each elevator input
-  test. A step input time of 40s was chosen to allow the initial
-  response to settle to an acceptable level (see Figure
-  \ref{intrograph}).
-\item
-  Use range of elevator input values, varying from an initial value of
-  -2 to 2 in steps of 1. Repeat each test case, saving workspace
-  variables.
-\item
-  Check data for anomalies, Averaged repeats for valid results across
-  the different step inputs.
-\end{enumerate}
-
-\begin{figure}[H]
-\captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=0.58\textwidth]{eqtable.pdf}
+  \item
+    \parbox[t]{\dimexpr\textwidth-\leftmargin}{%
+      \vspace{-3mm}
+      \begin{wrapfigure}{r}{0.6\textwidth}
+      \vspace{-10pt}
+        \centering
+        \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
+\includegraphics[trim = 0 0 0 0, clip, width=\linewidth]{eqtable.pdf}
 \label{eqtable}
-\end{figure}
+\vspace{-25pt}
+      \end{wrapfigure}
+      Replace the elevator input with a step block, using the parameters: Start Time: 40s, Start Value: -2, End Value: -1 to 2. This was used to automate the step input at a specific time for each elevator input test. A step input time of 40s was chosen to allow the initial response to settle to an acceptable level (see Figure \ref{intrograph}).
+      \vspace{3mm}
+      \item Use range of elevator input values, varying from an initial value of -2 to 2 in steps of 1. Repeat each test case, saving workspace variables.
+      \vspace{3mm}
+      \item Check data for anomalies, Averaged repeats for valid results across the different step inputs.
+    }
+  \end{enumerate}
 
 \subsection{Analyse Transfer Function}\label{analyse-transfer-function}
 
@@ -701,6 +696,8 @@ some critical points may have been missed. An example can be observed at
 the point of highest amplitude, the inflexion behaviour begins after a
 region of constant amplitude. Computationally we see a quicker inflexion
 transition in this region.
+
+\newpage
 % -----------------------------------------------------------------------------------
 %                                  APENDIX
 % -----------------------------------------------------------------------------------
