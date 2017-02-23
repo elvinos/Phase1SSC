@@ -3,11 +3,11 @@
 \begin{wrapfigure}{r}{0.62\textwidth}
   \begin{center}
   \vspace{-20pt}
-  \includegraphics[trim = 120 60 150 0, clip, width=0.615\textwidth]{intrograph.pdf}
+  \includegraphics[trim = 60 60 40 0, clip, width=0.615\textwidth]{intrograph2.pdf}
   \end{center}
   \caption{Graph Showing the Open Loop Nature of the Experimental Quanser Response}
   \label{intrograph}
-  \vspace{-10pt}
+  \vspace{-15pt}
 \end{wrapfigure}
 
 This report compares the experimental and analytical transfer functions of a 3-degrees-of-freedom Quanser-Control rig.  Control system design is important in understanding the behaviour of dynamic systems, to improve the performance. Sensors and actuators are used in the Quanser to measure and vary performance characteristics of the Quanser. In this experiment, an elevation angle change was introduced to the Quanser revealing an oscillating damped behaviour. Measuring this response an empirical transfer function was then created, to closely match the observed behaviour.
@@ -33,7 +33,7 @@ To calculate the Second Order Transfer-Function, a forced response behaviour was
 \begin{wrapfigure}{r}{0.6\textwidth}
 \vspace{-25pt}
   \centering
-  \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote2}}
+  \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
   \includegraphics[trim = 0 0 0 0, clip, width=\linewidth]{eqtable.png}
   \label{eqtable}
 \end{wrapfigure}
@@ -144,8 +144,8 @@ t_r &= 4.1719 &&t_s = 7.4287
 
 \begin{wrapfigure}{r}{0.56\textwidth}
   \begin{center}
-  \vspace{-6pt}
-  \includegraphics[trim = 45 15 35 30, clip, width=0.55\textwidth]{poleszmap.eps}
+  \vspace{-40pt}
+  \includegraphics[trim = 35 14 35 0, clip, width=0.55\textwidth]{poleszmap.eps}
   \end{center}
   \caption{Map of the Poles, sysTF1 = First Order, sysTF2 = Second Order}
  \label{poleszmap}

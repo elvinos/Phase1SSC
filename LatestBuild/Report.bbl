@@ -35,24 +35,6 @@
   \field{urlyear}{2017}
 \endentry
 
-\entry{vibnote}{report}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Titurus}{T.}%
-     {Dr~Branislav}{D.~B.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{TDB1}
-  \strng{fullhash}{TDB1}
-  \field{title}{Vibrations 2 Lab Notes - Tuned Vibration Absorber}
-  \list{institution}{1}{%
-    {University of Bristol}%
-  }
-  \field{type}{techreport}
-  \field{year}{2016}
-\endentry
-
 \entry{vibnote2}{report}{}
   \name{author}{1}{}{%
     {{}%

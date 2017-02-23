@@ -3,11 +3,11 @@
 \begin{wrapfigure}{r}{0.62\textwidth}
   \begin{center}
   \vspace{-20pt}
-  \includegraphics[trim = 150 60 180 20, clip, width=0.615\textwidth]{intrograph.pdf}
+  \includegraphics[trim = 120 60 150 0, clip, width=0.615\textwidth]{intrograph.pdf}
   \end{center}
   \caption{Graph Showing the Open Loop Nature of the Experimental Quanser Response}
   \label{intrograph}
-  \vspace{-15pt}
+  \vspace{-10pt}
 \end{wrapfigure}
 
 This report compares the experimental and analytical transfer functions of a 3-degrees-of-freedom Quanser-Control rig.  Control system design is important in understanding the behaviour of dynamic systems, to improve the performance. Sensors and actuators are used in the Quanser to measure and vary performance characteristics of the Quanser. In this experiment, an elevation angle change was introduced to the Quanser revealing an oscillating damped behaviour. Measuring this response an empirical transfer function was then created, to closely match the observed behaviour.
@@ -33,7 +33,7 @@ To calculate the Second Order Transfer-Function, a forced response behaviour was
 \begin{wrapfigure}{r}{0.6\textwidth}
 \vspace{-25pt}
   \centering
-  \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote},\cite{vibnote2}}
+  \captionof{table}{Table Showing Key Parameter Calculations \cite{vibnote2}}
   \includegraphics[trim = 0 0 0 0, clip, width=\linewidth]{eqtable.png}
   \label{eqtable}
 \end{wrapfigure}
@@ -84,7 +84,7 @@ Due to the Quanser-Control Rig being a Second Order System, Equation \ref{fos} w
 \end{align}
 
 \begin{align*}
-&\text{Where:} &&\zeta = 1 &&& \omega_n = 1.0532
+&\text{Where:} &&\zeta = 1, \quad \omega_n = 1.0532
 \end{align*}
 
 \begin{figure}[H]
@@ -128,8 +128,8 @@ t_r &= 4.1719 &&t_s = 7.4287
 ## Experimental Elevator Input:
 
 * There is an observable phase and amplitude deviation, particularly after the third peak. The phase shift becomes increasingly out of phase as the initial step input is reduced.
-* Peak amplitude prediction becomes worse for lower amplitude cases, however there is a very good match for 0,1 and 2 test cases first three peaks, the k value equation provided a good match. Note this equation was set heuristically to a step input of 2.
-* The oscillations around the expected steady level were slightly larger above the steady state level rather than below. This could be an artefact of the Quanser accumulating elevation drift.
+* Peak amplitude prediction becomes worse for lower amplitude cases, however there is a very good match for 0,1 and 2 test cases first oscillations, the $k$ value equation provided a good match. Note this equation was set heuristically to a step input of 2.
+* The oscillations around the expected steady level were slightly larger above the steady-state level rather than below. This could be an artefact of the Quanser accumulating elevation drift.
 * Steady state values match well for an elevator input of 0 and 1, however are noticeably different for -1 and 2.
 
 ## Root-Locus plot (See Figure \ref{poleszmap})
@@ -144,21 +144,18 @@ t_r &= 4.1719 &&t_s = 7.4287
 
 \begin{wrapfigure}{r}{0.56\textwidth}
   \begin{center}
-  \vspace{-40pt}
-  \includegraphics[trim = 35 14 35 0, clip, width=0.55\textwidth]{poleszmap.eps}
+  \vspace{-6pt}
+  \includegraphics[trim = 45 15 35 30, clip, width=0.55\textwidth]{poleszmap.eps}
   \end{center}
   \caption{Map of the Poles, sysTF1 = First Order, sysTF2 = Second Order}
  \label{poleszmap}
   \vspace{-20pt}
 \end{wrapfigure}
 
+Observing Figure \ref{2ndTFcomp} and \ref{1stTFcomp} many deviation's from MATLAB’s analytical transfer function step response were observed. During the Quanser operation, a significant observable error was drift, more noticeable during longer runs; potentially due to accumulating error increasing with time. Whilst the Quansers have error correcting features (through the closed-loop nature of the other parameters), this is only sensitive to a finite degree so could be considered imperfect. An initial elevator input was set to -2 (to get the fans running), and then after 40 seconds, an elevator step was input into the system. As a result the step input may have been applied during mid oscillation past the steady state elevation position; this likely either amplified or decreased the actual step input depending on which stage of oscillation the Quanser was at, at the moment of step input. The 40 second run reduced the steady-state level to 10-20% of the steady state value. Errors may accumulate for a greater run time as the system fails to accurately correct for inconsistencies.
 
- Observing Figure \ref{2ndTFcomp} and \ref{1stTFcomp} many deviation's from MATLAB’s theoretical transfer function step response were observed. During the Quanser operation, a significant observable error was the drift in the Quanser, more noticeable during longer runs; potentially due to accumulating error increasing with time. Whilst the Quansers have error correcting features (through the closed-loop nature of the other parameters), this is only sensitive to a finite degree so could be considered imperfect. An initial elevator input was set to -2 (to get the fans running), and then after 40 seconds an elevator step was input into the system. As a result the step input may have been applied during mid oscillation past the steady state elevation position; this likely either amplified or decreased the actual step input depending on which stage of oscillation the Quanser was at. A 40 seconds run reduced the steady-state level to 10-20% of the steady state value. Errors may accumulate for a greater run time as the system fails to accurately correct for inconsistencies.
-
- Another source of deviation is inaccuracy in step input time. In theory the step input is modelled as an immediate action. A step block was introduced in the Simulink model to automate the ‘elevator input’ at 40 seconds, however closer observation of the corresponding pitch and travel data plots revealed a slight delay. Accumulated lag in the system and controller and a delayed response time both contributed to latency. Latency causes a phase and amplitude shift in experimental results, as well as introducing error in parameters such as the logarithmic decrement $\Lambda_i$ and damped frequency $\omega_d$ calculations.
+Another source of deviation is inaccuracy in step input time. In theory, the step input is modelled as an immediate action. A step block was introduced in the Simulink model to automate the ‘elevator input’ at 40 seconds, closer observation of the corresponding pitch and travel data plots revealed a slight delay. Accumulated lag in the system and controller and a delayed response time both contributed to latency. Latency causes a phase and amplitude shift in experimental results, as well as introducing error in parameters such as the logarithmic decrement $\Lambda_i$ and damped frequency $\omega_d$ calculations.
 
 From a mechanical perspective, friction in the Quanser hinge support and tension from the power cables resulted in a reduction in expected elevation. This adds to the natural damping of the system, one explaining for the compacted peaks in experimental data (see Figure \ref{2ndTFcomp}), and could explain some variation in repeats which was larger than would be expected for a fixed experiment.
 
-As with any control system, noise can be introduced by external and internal factors. In the Quanser system, gyro noise and wind resistance are contributing factors.  Sensors in any system measure quantities which need to be controlled - in this case the elevator sensor sampling was storing values at discrete points. Whilst the sampling time was quite small, capturing the general nature of the oscillating damped curves, some critical points may have been missed. An example can be observed at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Computationally we see a quicker inflexion transition in this region.
-
-\newpage
+As with any control system, noise can be introduced by external and internal factors. In the Quanser system, gyro noise and wind resistance are contributing factors.  Sensors in any system measure quantities which need to be controlled. In this case, the elevator sensor sampling was storing values at discrete points. Whilst the sampling time was quite small, capturing the general nature of the oscillating damped curves, some critical points may have been missed. An example can be observed at the point of highest amplitude, the inflexion behaviour begins after a region of constant amplitude. Computationally we see a quicker inflexion transition in this region.
