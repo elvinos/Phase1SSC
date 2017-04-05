@@ -81,9 +81,9 @@ end
 j = 1;
 for G = minGg:stepP:maxGg
 
-sim('PD.slx',[0 40])
-sim('PID.slx',[0 40])
-sim('PI.slx',[0 40])
+sim('PD.slx',[0 20])
+sim('PID.slx',[0 20])
+sim('PI.slx',[0 20])
 
    Kd= G;
    Kp= G;
