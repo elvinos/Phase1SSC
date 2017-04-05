@@ -51,6 +51,7 @@ for G = mingg:stepp:maxgg
      figure(52)
      pzmap(Tp);
      title('P - Simulink');
+     grid on;
      hold on; 
      
      i = i + 1;
@@ -107,6 +108,7 @@ sim('PI.slx',[0 20])
         figure(63)
         pzmap(Td);
         title('Root Locus for Constant K_p = 1, Varying K_d ')
+        grid on;
         hold on;
 
 
@@ -121,6 +123,7 @@ sim('PI.slx',[0 20])
         figure(73)
         pzmap(Ti);
         title('Root Locus for Constant K_p and K_d = 1, Varying K_i ')
+        grid on;
         hold on;
          
         j = j + 1;
