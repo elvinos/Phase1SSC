@@ -51,6 +51,7 @@ for G = mingg:stepp:maxgg
      figure(52)
      pzmap(Tp);
      title('P - Simulink');
+     xlim([-0.09 -0.05]);
      grid on;
      hold on; 
      
