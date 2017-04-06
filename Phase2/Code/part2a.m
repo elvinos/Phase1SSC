@@ -20,8 +20,8 @@ set(0,'DefaultTextFontSize', 18)
 %% Gain iterating
 
 % stepP=0.1;
-stepP=0.1;
-Gg = (0.0001:stepP:0.0001);
+stepP=0.005;
+Gg = (0:stepP:0.1);
 maxGg=max(Gg);
 minGg=min(Gg);
 
@@ -35,13 +35,13 @@ j = 1;
 for G = minGg:stepP:maxGg
 
    Kd= G;
-   Kp= 0;
-   Ki= 0;
+   Kp= G;
+   Ki= G;
 sim('PIDp2.slx',[0 20])
    
          Cpid = pid(Kd,Ki,Ki);
          Tpid = feedback(Cpid*A,1);
-         stepinfoKPID(j) = stepinfo(Tpid);
+         stepinfoKPID(j) = stepinfo(Tpid,'SettlingTimeThreshold',0.04);
 
         figure(72)
         plot(varyKIKDKP);
@@ -58,6 +58,11 @@ sim('PIDp2.slx',[0 20])
 end
 
 Effect_of_Varying_KPID = struct2table(stepinfoKPID);
+Gain= Gg';
+gaintab = table(Gain);
+
+ResultsTable=[gaintab,Effect_of_Varying_KPID];
+
 
 for i=72:73
     figure(i)
