@@ -8,7 +8,20 @@ between the control input and the observed output. In an engineering
 context, it is desirable to have a sharp response to user input and
 correctly tuned PIDs will achieve this. The responses highlighted in
 this report are in relation to the Quanser behaviour observed in Control
-Coursework Part 1. \#\# Proportional Feedback Controller
+Coursework Part 1.
+
+\subsection{Proportional Feedback
+Controller}\label{proportional-feedback-controller}
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\centering
+\vspace{-15pt} % Space added to the top of the image
+\includegraphics[trim = 0 0 0 0, clip, width=0.5\textwidth]{Psim.pdf}
+\vspace{-10pt}
+\caption{Caption Text}
+\label{Psim}
+\vspace{-15pt}
+\end{wrapfigure}
 
 Proportional control uses the `Present' state of the plant to error
 correct. The correction applied is proportional to the deviation from
@@ -35,8 +48,36 @@ observation noted in the time domain plot, as increased natural
 frequency will lead to greater oscillatory behaviour and decreased
 damping ratio increases the overshoot.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{.455\textwidth}
+ \centering
+ \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{pres.eps}
+ \caption{}
+ \label{pres}
+\end{minipage}
+\hfill
+\begin{minipage}{.455\textwidth}
+\centering
+\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{pzp.eps}
+\caption{}
+\label{pzp}
+\end{minipage}
+\vspace{-20pt}
+\end{figure}
+
 \subsection{Derivative Feedback
 Controller}\label{derivative-feedback-controller}
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\centering
+\vspace{-15pt} % Space added to the top of the image
+\includegraphics[trim = 0 0 0 0, clip, width=0.5\textwidth]{pd2.pdf}
+\vspace{-10pt}
+\caption{Caption Text}
+\label{pd2}
+\vspace{-15pt}
+\end{wrapfigure}
 
 Derivative control utilises the expected `Future' state of the system to
 pre-emptively produce an error correct signal. This correction is
@@ -71,6 +112,16 @@ is reduced (and hence less oscillatory behaviour).
 
 \subsection{Integral Action}\label{integral-action}
 
+\begin{wrapfigure}{l}{0.5\textwidth}
+\centering
+\vspace{-15pt} % Space added to the top of the image
+\includegraphics[trim = 0 0 0 0, clip, width=0.5\textwidth]{PIDp2.pdf}
+\vspace{-10pt}
+\caption{Caption Text}
+\label{PIDp2}
+\vspace{-15pt}
+\end{wrapfigure}
+
 Integral control utilises the `Past' state of the system to produce an
 error-correcting signal. The integral term looks at the period and how
 far the measured variable is from the desired state in time. This
@@ -87,8 +138,8 @@ response level.
 gain increases the steady state error is completely eliminated. The
 preferred controller is PID.
 
-\section{PID design to achieve control
-requirements}\label{pid-design-to-achieve-control-requirements}
+\section{PID Design to Achieve Control
+Requirements}\label{pid-design-to-achieve-control-requirements}
 
 \subsection{Open Loop Transfer Function PID
 Controller}\label{open-loop-transfer-function-pid-controller}

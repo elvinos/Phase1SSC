@@ -24,7 +24,7 @@ step(A, t)
 i = 1;
 
 c = 0;
-stepp=0.01;
+stepp=0.02;
 gg = (0.01:stepp:0.1);
 maxgg=max(gg);
 mingg=min(gg);
@@ -49,12 +49,14 @@ for G = mingg:stepp:maxgg
      title('P - Simulink');
      hold on;
      figure(52)
-     pzmap(Tp);
+     pzplot(Tp); %%%%%% Changed to Plot So you Can customise
+     h = findobj(gca, 'type', 'line');
+     set(h, 'markersize', 16)
+     set(h, 'linewidth', 3)
      title('P - Simulink');
      xlim([-0.09 -0.05]);
      grid on;
      hold on; 
-     
      i = i + 1;
 end
 for i=51:52
@@ -69,7 +71,7 @@ for i=51:52
     end
 end 
 
-stepP=0.05;
+stepP=0.1;
 Gg = (0.0:stepP:1);
 maxGg=max(Gg);
 minGg=min(Gg);
@@ -107,7 +109,10 @@ sim('PI.slx',[0 20])
         title('Varying K_d and K_p')
         hold on;
         figure(63)
-        pzmap(Td);
+        pzplot(Td);
+        hh = findobj(gca, 'type', 'line');
+     set(hh, 'markersize', 12)
+     set(hh, 'linewidth', 2)
         title('Root Locus for Constant K_p = 1, Varying K_d ')
         grid on;
         hold on;
@@ -122,7 +127,11 @@ sim('PI.slx',[0 20])
         title('Varying K_d, K_p and K_i');
         hold on;
         figure(73)
-        pzmap(Ti);
+        pzplot(Ti);
+        
+        hhh = findobj(gca, 'type', 'line');
+     set(hhh, 'markersize', 12)
+     set(hhh, 'linewidth', 2)
         title('Root Locus for Constant K_p and K_d = 1, Varying K_i ')
         grid on;
         hold on;
@@ -144,7 +153,7 @@ for i=61:63
        legend(Legend,'Orientation','vertical','Location','southeast')
 
     else
-        legend(Legend,'Orientation','vertical','Location','northwest')
+        legend(Legend,'Orientation','horizontal','Location','northwest')
     end
 end 
 for i=71:73
@@ -154,6 +163,6 @@ for i=71:73
         ylabel('Response')
          legend(Legend,'Orientation','vertical','Location','southeast')
     else
-       legend(Legend,'Orientation','vertical','Location','northwest')
+       legend(Legend,'Orientation','horizontal','Location','northwest')
     end
 end 
