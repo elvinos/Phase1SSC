@@ -3,5 +3,5 @@
 \BOOKMARK [2][-]{subsection.1.2}{Derivative\040Feedback\040Controller}{section.1}% 3
 \BOOKMARK [2][-]{subsection.1.3}{Integral\040Action}{section.1}% 4
 \BOOKMARK [1][-]{section.2}{PID\040Design\040to\040Achieve\040Control\040Requirements}{}% 5
-\BOOKMARK [2][-]{subsection.2.1}{Open\040Loop\040Transfer\040Function\040PID\040Controller}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.1}{PID\040Controller\040Tuning}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.2}{Tuned\040Quanser\040Controller}{section.2}% 7
