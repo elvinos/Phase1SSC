@@ -16,6 +16,19 @@
   {}
 \endgroup
 
+\entry{ControlT54:online}{online}{}
+  \field{title}{Control Tutorials for MATLAB and Simulink - Introduction: PID
+  Controller Design}
+  \verb{url}
+  \verb http://ctms.engin.umich.edu/CTMS/index.php?example=Introduction&section
+  \verb =ControlPID
+  \endverb
+  \field{year}{2012}
+  \field{urlday}{07}
+  \field{urlmonth}{04}
+  \field{urlyear}{2017}
+\endentry
+
 \lossort
 \endlossort
 

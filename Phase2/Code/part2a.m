@@ -109,7 +109,7 @@ plot(tfo,yfo);
 
 
 figure(82)
-plot(varyKIKDKP);
+plot(varyKIKDKP,'linewidth',3);
 title('Response For PID');
 hold on;
 figure(83)
@@ -123,7 +123,8 @@ singleTablefo = struct2table(stepinfofopid2);
 
 
 %% 2b Simout
-
-sim('SSC17_QuanserPart2_PIDdesign.slx',[0 100])
-figure()
-plot(pbsimout);
+% figure()
+% sim('SSC17_QuanserPart2_PIDdesign.slx',[0 100])
+% hold on
+% plot(pbsimout,'linewidth',2);
+% xlim([0 100])
