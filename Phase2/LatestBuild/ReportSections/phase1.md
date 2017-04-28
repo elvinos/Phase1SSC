@@ -1,193 +1,129 @@
-# P-I-D analysis
-This report introduces the effects of proportional, derivative and integral gains, implemented by a conventional PID controller on a Quanser's behaviour \footnote{See Control Coursework Part 1 for a derivation of the open-loop second order transfer functions for the Quanser elevation axis}. This is assessed using time-domain and root locus results. A closed loop PID controller, is used to reduce tracking error ($e$) between the control input and the observed output \cite{ControlT54:online}. Through correctly tuning the PID controller, it is desirable to achieve a sharp response to a unit step input. The simulated results were verified by theory predictions.
+# Introduction
 
-## Proportional Feedback Controller
+This report analyses the effectiveness of a using a PID controller derived in Phase 2 on a Quanser-rig. Before implementing the controller on the Quanser-rig, nonlinearities in the form of a rate limiter and saturation were added to the simulation. By implementing a design process,  new control objectives were met, then implemented on the Quanser-rig  The following report discusses both the design process, results and any observations made through creating an effective controller for the Quanser-rig.
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-\centering
-\vspace{-35pt} % Space added to the top of the image
-\includegraphics[trim = 0 0 0 0, clip, width=0.5\textwidth]{Psim.pdf}
-\vspace{-25pt}
-\caption{Proportional Feedback Controller}
-\label{Psim}
-\vspace{-15pt}
-\end{wrapfigure}
-
-Proportional gain control uses the *Present* state of a plant to error correct. The correction applied is proportional to the deviation from the desired state of the plant. The result causes a highly oscillatory system response, as the present error evaluates the instantaneous state of the plant only.  The simulation shown in Figure \ref{Psim} found the effect of varying proportional gain ($K_p$) for the Quanser transfer function. The simulation executed an iterative loop with varying $K_p$ from 0 to 0.1 in increments of 0.01. Figure \ref{pres} shows the time domain response of increasing $K_p$. When $K_p = 0$, a flat line was observed as there is no signal passing through the plant. By extending proportional gain, the correction factor became larger, increasing amplitude for higher $K_p$ gains. The `stepinfo()` function revealed that an increase in $K_p$, reduced both rise time and steady-state error while raising overshoot.
-
-The root locus plot in \ref{pzp} allows observation of s-domain features with varying proportional gain.  For pure variation in proportional gain, the (stable) poles are restricted to the same distance from the imaginary axis. By increasing $K_p$ the poles moved away from the real axis in both directions, increasing natural-frequency ($\omega_n$) and decreasing damping ratio $\zeta$. The result verifies the observation noted in the time domain response, as increased natural frequency will lead to greater oscillatory behaviour, and reduced damping ratio increases the overshoot.
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{.455\textwidth}
- \centering
- \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{pres.eps}
- \caption{Response of Varying $K_p$}
- \label{pres}
-\end{minipage}
-\hfill
-\begin{minipage}{.5\textwidth}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{pzp.eps}
-\caption{Poles of Varying $K_p$}
-\label{pzp}
-\end{minipage}
-\vspace{-20pt}
-\end{figure}
-
-## Derivative Feedback Controller
-
-\begin{wrapfigure}{r}{0.6\textwidth}
-\centering
-\vspace{-35pt} % Space added to the top of the image
-\includegraphics[trim = 0 0 0 0, clip, width=0.59\textwidth]{pd2.pdf}
-\vspace{-10pt}
-\caption{PD Feedback Controller}
-\label{pd2}
-\vspace{-20pt}
-\end{wrapfigure}
-
-Derivative control utilises the expected *Future* state of the system to pre-emptively correct the error signal, $e$. This correction is proportional to the rate of change of the system state at any one point in time.  The system predict the future plant state based on the rate of change condition. It then accounts for the effects of this condition in the error response. For this reason, a large damping effect is expected for increasing derivative gain ($K_d$). The simulation in Figure \ref{pd2} was implemented to observe the effect of pure variation of $K_d$ with constant a $K_p$. Figure \ref{vkpvkd} shows the effect of varying both gains by the same magnitude; controlled using an additional gain block after the controller. Gain values in Figure \ref{vkpvkd} and Figure \ref{ckpvkd} were incremented from 0 to 1 in increments of 0.1.
-
-\begin{wrapfigure}{r}{0.45\textwidth}
-\centering
-\vspace{-15pt} % Space added to the top of the image
-\includegraphics[trim = 0 0 0 0, clip, width=0.45\textwidth]{vkpvkd.eps}
-\vspace{-10pt}
-\caption{Time-Domain Response For Varying $K_p$ and Varying $K_d$}
-\label{vkpvkd}
-\vspace{-15pt}
-\end{wrapfigure}
-
-Both time domain responses show that increasing $K_d$ has a greater damping effect on oscillations, reducing overshoot while increasing rise time. For a $K_d = 0$, large oscillations were observed, decreasing with higher gain values. For gain values of 0.6 and above, both high damping and quick settling times were observed. Increasing both $K_d$ and $K_p$ by the same amount shows a reduction in rise time, overshoot and steady-state error.
-The root locus S-domain metrics in Figure \ref{pzd} show that as $K_d$ increases the poles are shifted negatively in the real axis. The semi-circular shape represents the line of equal proportional gain, and the points represent varying $K_d$ at that $K_p$ level. As $K_d$ is increased, the polar angle also increases. This implies poles closer to the real axis, (higher $K_d$) correspond to poles with greater damping; the natural frequency is therefore reduced, decreasing oscillatory behaviour.
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{.455\textwidth}
- \centering
- \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{ckpvkd.eps}
- \caption{Time-Domain Response For Constant $K_p$ and Varying $K_d$}
- \label{ckpvkd}
-\end{minipage}
-\hfill
-\begin{minipage}{.455\textwidth}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{pzd.eps}
-\caption{Poles of Constant $K_p$ and Varying $K_d$}
-\label{pzd}
-\end{minipage}
-\vspace{-20pt}
-\end{figure}
-
-## Integral Action
-
-\begin{wrapfigure}{r}{0.5\textwidth}
-\centering
-\vspace{-35pt} % Space added to the top of the image
-\includegraphics[trim = 0 0 0 0, clip, width=0.5\textwidth]{PIDp2.pdf}
-\vspace{-15pt}
-\caption{PID Feedback Controller}
-\label{PIDp2}
-\vspace{-15pt}
-\end{wrapfigure}
-
-Integral control utilises the *Past* state of the system to produce an error-correcting signal. The integral controller sums the historical tracking errors up to current time state, eliminating offset and leading to a zero steady-state error. The simulation of a full PID controller is shown in Figure \ref{PIDp2}. Figure \ref{ckpckdvki} shows the variation of pure integral gain ($K_i$) with constant $K_p$ and $K_d$. Figure \ref{vkpvkdvki} shows the variation of all three gains $K_d$, $K_i$ and $K_p$ by the same magnitude. This was implemented using a gain-scaling block placed after the controller. The time domain plots confirm the zero steady-state error as the oscillations settled at unity step input.
-
-\begin{figure}[h]
-\centering
-\begin{minipage}{.465\textwidth}
- \centering
- \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{ckpckdvki.eps}
- \caption{Time-Domain Response For Constant $K_p$, $K_d$ and Varying $K_i$}
- \label{ckpckdvki}
-\end{minipage}
-\hfill
-\begin{minipage}{.465\textwidth}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{pzi.eps}
-\caption{Poles of Constant $K_p$, $K_d$ and Varying $K_i$}
-\label{pzi}
-\end{minipage}
-\vspace{-15pt}
-\end{figure}
-
-\begin{wrapfigure}{r}{0.5\textwidth}
-\centering
-\vspace{-5pt} % Space added to the top of the image
-\includegraphics[trim = 0 0 0 0, clip, width=0.5\textwidth]{vkpvkdvki.eps}
-\vspace{-10pt}
-\caption{Time-Domain Response For Varying $K_p$, $K_d$ and $K_i$}
-  \label{vkpvkdvki}
-\vspace{-35pt}
-\end{wrapfigure}
-
-At $K_i = 0$ a large steady-state error exists in the system. However as $K_i$ increases, the steady state error is reduced until it becomes negligible. The root locus plot in Figure \ref{pzi}, implies a stable system for the chosen gain range.
-
-Observing the three controllers, for Quanser elevation, it is important to have a behaviour with a very low steady-state error and damped oscillations. This is due to a Quanser pilot requiring precise elevation, particularly at landing and taking off. Based on these requirements a PID controller appears to be the most appropriate feedback method for the Quanser's elevation response transfer function.
-
-# PID Design to Achieve Control Requirements
-
-\begin{wraptable}{r}{0.5\textwidth}
-\vspace{-20pt}
-\caption{Effect of Increasing PID Gains on Objectives}
-\vspace{-5pt}
-\centering
- \includegraphics[trim = 0 0 0 0, clip, width=0.49\textwidth]{tableobj.pdf}
- \vspace{-20pt}
- \label{paramtab}
-\end{wraptable}
-
-Through implementing the learning gained in part 1, a closed loop-feedback controller was then developed for the theoretical Quanser transfer functions (see below) \footnote{The first order transfer function obtained in Control part 1, was corrected using the $\tau$. $\tau = \zeta \times \omega_n$}. This controller was tuned, through creating a script which produced the step response of the controller, displaying results using the `stepinfo()` function. Due to the steady state error response observed through using either a P or PD controller, it was decided to iterate different gains for using a full PID controller, to obtain the optimum response. Initially all gains were iterated using the gain-scaling block (discussed in section \ref{integral-action}). Through observing the different responses, a rough estimate was found for all three gains, which could then be individually tweaked based on the parameters shown in Table 1. Results were also refined using Matlab's inbuilt PID tuner, helping rise and settling time objectives.
+The following transfer function was used to design the controller, taken from Phase 1:
 
 \begin{align*}
 &\text{$2^{nd}$ Order: }k \cdot \frac { 1.109\cdot \frac{180} {\pi} }{ s^2 + 0.1313s +1.109 }
 &&\text{$1^{st}$ Order: }k \cdot \frac { 1 }{ 15.24s +1 }
 \end{align*}
 
-## PID Controller Tuning
+Where $k = 0.26$.
 
-As the proportional, integral and derivative gain values were adjusted to tune the PID, the characteristics for changing each gain were considered with reference to Table 1. The controller was then tuned as necessary to best meet the requirements. Analysing the first order transfer function response, a high rise and settling time were both observed. As the Quanser behaves as a second order system, it was decided to neglected the first order transfer function in favour of the second order transfer function. The tuned response can be seen in Figure \ref{p2atun}.
-\begin{figure}[H]
-\centering
-\begin{minipage}{.5\textwidth}
+
+# Nonlinearity Simulation Control Refinement
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+ \vspace{-10pt}
  \centering
- \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{p2atun.eps}
+  \includegraphics[trim = 0 0 0 0, clip, width=0.449\textwidth]{origcontrol.pdf}
+\vspace{-5pt}
+  \caption{Showing original Controller Architecture}
+  \vspace{-20pt}
+  \label{origcontrol}
+ \end{wrapfigure}
+
+In Quanser Control Part 3, the improved PID controller successfully met the Phase 2 requirements but failed to meet the overshoot (OS) condition for the refined controller. The PID control architecture in Figure \ref{origcontrol} from Part 2 was tested using both non-linear simulation and on the Quanser setup.
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+ \vspace{-10pt}
+ \centering
+  \includegraphics[trim = 0 0 0 0, clip, width=0.449\textwidth]{fincontrol.pdf}
+\vspace{-5pt}
+  \caption{Showing Improved Controller Architecture}
+  \vspace{-20pt}
+  \label{fincontrol}
+ \end{wrapfigure}
+
+At this stage, the design process for the controller consisted of; extracting preliminary responses from the Quanser-rig, analysing the responses to obtain a simulated plant transfer function. The transfer function was designed to represent small changes in elevation angle, whereby purely tuning the gains, manifested a desirable response. The controller, therefore, was  built to achieve a good response in the simulation, so is susceptible to errors when translating to the real Quanser-rig.
+
+For the controller to meet the overshoot requirement, the controller was further refined in the simulation. Through using understanding taken from Phase 2, shown in Table \ref{paramtab}, gains were modified to improve the results further. Starting with the integrator gain ($K_i$), which had the greatest effect on reducing the steady-state error, this was increased by an increment, until the transfer function response began to deteriorate. $K_i$ had only a small range in which the response could be altered without degrading the results; suggesting that the original $K_i$ value was a good fit. Maximising $K_i$ first, meant that the effects of varying derivative gain ($K_d$) on the steady state would be minimised. A similar process was followed for then the proportional gain ($K_p$) and $K_d$, where $K_p$ was maximised to reduce the rise time ($T_R$) and $K_d$ was optimised to reduce the overshoot $OS$. Maximising these values, helped improve the performance characteristics without heavily deteriorating other properties.
+
+To test the controller performance more vigorously, the PID was run in a new simulation, with non-linearities added; in the form of a rate limiter and saturation block. A rate limiter block limits the speed of change of the signal, and the saturation represents a limit in amplitude. This new simulation would improve the accuracy of emulation to expected Quanser response. A marginal change could be seen when comparing the results of the non-linear simulation to the original, where overshoot would increase slightly. Further experimentation found that increasing gain values by an order of magnitude, destabilised the results revealing much greater non-linear effects; further confirming that the PID gains selected, fell within an acceptable region. With a small additional tweaking following the same design process, the final gain values are shown in in Table \ref{gains} met the requirements of the Phase 3 design characteristics.
+
+Figure \ref{fincontrol} shows the original controller configuration utilised the numerical Simulink derivative block within the PID controller. It was found that the control architecture could also be improved for the actual control rig.  Using the derivative as output directly `y_elevdot` from the Quanser - it was expected that the numerical derivative block would not be as representative of the observed rate of change as the actual derivative output. This view was confirmed by the improved experimental results from provisional testing on the Quanser-rig. The difference in architecture was unobservable in simulation, highlighting a noticeable difference between real and simulated output data.
+
+ \begin{figure}[H]
+\begin{center}
+\begin{minipage}{.45\textwidth}
+\vspace{-10pt}
+\centering
+\caption{Effect of Increasing PID Gains on Objectives}
+\vspace{-5pt}
+ \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{tableobj.pdf}
  \vspace{-20pt}
- \ \captionof{figure}{Tuned PID Response}
- \label{p2atun}
+ \label{paramtab}
 \end{minipage}
 \hfill
-\begin{minipage}{.35\textwidth}
+\begin{minipage}{.255\textwidth}
 \centering
-\captionof{table}{Tuned PID Transfer Function Values}
-\vspace{-10pt}
-\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{paramtuned.pdf}
-\label{paramtab}
+  \caption{Showing Controller Gain Values Used}
+ \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{gains2.pdf}
+ \label{gains}
+\end{minipage}
+\end{center}
+\vspace{-20pt}
+\end{figure}# Quanser Controller Refinements
+After satisfying the desired requirements in the simulated response, the controller was tested on the Quanser rig. It was found that the controller performed well, meeting the desired requirements, where a small improvement in overshoot was noticed. Due sampling errors small deviations from the steady state could be seen  (see \ref{quanscomp}) of $\pm 0.4$\% could be seen from elevation angle. As the sampling rate was limited by the sensors on the Quanser, results appeared jagged, reducing the precision of the results; this was great enough however, for the general trends to be seen.
+
+# Results
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[trim = 0 0 0 0, clip, width=0.6\textwidth]{quanscomp.eps}
+\caption{Showing Difference in Original and Improved Controller Performance on Quanser Response}
+ \label{quanscomp}
+ \end{figure}
+
+ \begin{figure}[H]
+\centering
+\begin{minipage}{.49\textwidth}
+\centering
+\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{origresult.eps}
+\caption{Showing Difference in Original Controller Performance Comparing Simulated and Quanser Responses}
+\label{origresult}
+\end{minipage}
+\hfill
+\begin{minipage}{.49\textwidth}
+\centering
+\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{improvresult.eps}
+\caption{Showing Difference in Improved Controller Performance Comparing Simulated and Quanser Responses}
+\label{improvresult}
 \end{minipage}
 \vspace{-20pt}
 \end{figure}
 
-## Tuned Quanser Controller
-
-A PID controller with the stated $K_p$, $K_d$, and $K_i$ values was created inside the `SSC17_QuanserPart2_PID` `design.slx` controller block. The second order transfer function was placed into the empty `PLANT` block. The expected Quanser response then observed for the chosen PID and plant configurations. In addition the two other `EXTREME` plants were tested to ensure the controller was working effectively. Figure \ref{p2bres} shows the design configuration response due to step input as well as the extreme plant response to the designed controller.
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{.495\textwidth}
+ \begin{table}[H]
  \centering
- \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{p2bres.eps}
- \vspace{-20pt}
- \caption{Expected Quanser Repsonse of PID Controller}
- \label{p2bres}
-\end{minipage}
-\hfill
-\begin{minipage}{.495\textwidth}
-\centering
-\includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{theorycontr.pdf}
+ \caption{Showing Controller Response Results for Simulation and Quanser Tests}
+ \includegraphics[trim = 0 0 0 0, clip, width=0.65\textwidth]{resultstab2.pdf}
+ \label{resultstab}
+ \end{table}
+
+# Discussion
+
+The original controller design did not satisfy these requirements so it was decided to tune the PID further.  Figure \ref{quanscomp} highlights the experimental difference between the original tuned PID controller (as taken directly from Part 2 after non linear simulation) and the iteratively improved, tuned (alternative architecture ) PID controller. The improved Quanser response displayed a rise time of 2.18 seconds, settling time of 2.18 seconds (as the 4% error limits were satisfied at the same time as the rise time), a Overshoot of 0.48% and a negligible steady state error. These values comfortably satisfied the required objectives of 6s, 5s, 15% and 0% respectively and also improved upon and satisfied the desired objectives of 4s, 10s, 5% and 0%.  The improved controller showed a faster rise time, faster settling time and greater overshoot % over the original controller design. In an engineering context, it is critical the response to controller input is as sharp and responsive as possible and the improved controller achieves this to a greater accuracy. Observing the step input time more closely it can be seen that the choice of controller also effects the delay/error when the step kicks in. The Quanser was allowed to settle to a reasonable level before the step input was tested, but the original controller showed larger settling oscillations, this likely  contributed towards the amplitude and phase error displayed in \ref{origresult} between the simulated Quanser response and the experimental Quanser response. This observation is also reinforced by Figure \ref{improvresult} as the 'perfect' simulink step input shows less delay.
+
+
+A key assumption in place during transfer from simulation to real world response was the idealisation of the elevator actuation, this is with the assumption that no physical limitations are in place. Realistically, this may be misrepresenting the physical actuator and likely introduced error through the form of actuator delay.  The results presented above highlight the step response for the tuned PID controller for a step input of 2 , this value was chosen as the design process was derived from experimental results with a -2 to 2 step input range. It was expected that for steps higher than this range (although the PID controller may function correctly for these inputs) the derived transfer function was not completely representative of higher step input responses. To summarise, it was expected the system will be accurate near the near the 'fix-point' and potentially show deviations at higher step inputs. Additionally it is important to note that the Quanser was allowed to settle to account for unknown nonlinearities during start up, however an error is introduced here due oscillations never really settling completely to zero, this implied when the step 'kicked' in the response was likely mid oscillations - hence the step response was added to this. As this effect is likely present in real world rotatory wing aircraft, the design parameters were estimated conservatively to meet the requirements in any case.  
+
+\begin{wrapfigure}{r}{0.45\textwidth}
 \vspace{-10pt}
-\caption{Simulation Used for Theory Controller}
-\label{paramtab}
-\end{minipage}
-\vspace{-20pt}
-\end{figure}
+\centering
+ \includegraphics[trim = 0 0 0 0, clip, width=0.45\textwidth]{ampresmark.pdf}
+\vspace{-5pt}
+\caption{Showing Magnitude of Rate Response}
+ \vspace{-20pt}
+ \label{ampres}
+\end{wrapfigure}
+
+The Quanser experiment was set in a reasonably controlled 'lab' environment with few assumed non linearities  ( as discussed previously  ) and hence the PID was designed with the assumption of "weak non linearities". This resulted in a fairly simple tuning process to meet the specified requirements and resulted in a 'good' response. However, for further, more complex engineering applications - the system in question may display a larger number of non linear effects. This may be accounted for using the method of gain scheduling. Gain Scheduling \cite{stackcont} achieves control of a non linear system by linearising the problem at various operation states; resulting in a "family" of PID controllers which will each respectively activate when a certain operation state is achieved. Each of these PID controllers must be tuned independently to optimise for their respective linearisation. The design then switches between each of these models to achieve the "best response" for the current state. More conclusively, within limits of this study - the obtained tuned PID controller for the Quanser is effective and meets the desired time domain requirements. For further accuracy of either Quanser control, or more complex systems; additional control structures should be considered.
+
+
+In an aircraft control context, the control parameters may be altitude or Mach.
+
+# Conclusions
+
+
+This experiment has been a useful exercise in illustrating common pitfalls, and behaviour  transferring a theoretically functioning tuned PID controller to a real world system.  Whist it was difficult to initially predict the Quanser response using the provided SIMULINK non linear simulation, further Quanser analysis allowed for re-tunign of gains to the given final values. It was interesting to note that the real world response always varied from the expected simulations for every tested tuned PID controller and configuration - this difference is likely an artefact of the  non linearities present.

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2014.12.3)  26 APR 2017 20:48
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2014.12.3)  28 APR 2017 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1583,17 +1583,30 @@ LaTeX Font Warning: Font shape `TS1/Avenir-Light(0)/m/n' undefined
 [1
 
 ]
+File: Img/origcontrol.pdf Graphic file (type QTm)
+ <use  "Img/origcontrol.pdf" >
 
-LaTeX Warning: Empty bibliography on input line 465.
+Package wrapfig Warning: Collision between wrapping environments on input line 
+443.
 
+File: Img/fincontrol.pdf Graphic file (type QTm)
+<use  "Img/fincontrol.pdf" >
 
-AED: lastpage setting LastPage
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 45
+3.
+
+File: Img/tableobj.pdf Graphic file (type QTm)
+<use  "Img/tableobj.pdf" >
+Overfull \hbox (2.35062pt too wide) in paragraph at lines 484--487
+ []\EU1/Avenir-Light(0)/m/sc/10.95  [] 
+ []
+
 File: TempImg/logobris.png Graphic file (type QTm)
 <use  "TempImg/logobris.png" >
 LaTeX Font Info:    Font shape `EU1/Avenir-Light(0)/m/sl' in size <10.95> not a
 vailable
 (Font)              Font shape `EU1/Avenir-Light(0)/m/it' tried instead on inpu
-t line 467.
+t line 503.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1604,11 +1617,68 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [1
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 467.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 467.
+File: Img/gains2.pdf Graphic file (type QTm)
+ <use  "Img/gains2.pdf" >
+Overfull \hbox (2.34297pt too wide) in paragraph at lines 508--511
+ []\EU1/Avenir-Light(0)/m/sc/10.95  [] 
+ []
+
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 517
+.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/euenc/eu1lmtt.fd
+File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+File: Img/quanscomp.eps Graphic file (type eps)
+
+<Img/quanscomp.eps>
+File: Img/origresult.eps Graphic file (type eps)
+ <Img/origresult.eps>
+File: Img/improvresult.eps Graphic file (type eps)
+ <Img/improvresult.eps>
+File: TempImg/logobris.png Graphic file (type QTm)
+
+<use  "TempImg/logobris.png" >
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 33.0742pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2]
+File: Img/resultstab2.pdf Graphic file (type QTm)
+ <use  "Img/resultstab2.pdf" >
+File: TempImg/logobris.png Graphic file (type QTm)
+ <use  "TempImg/logobris.png" >
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 33.0742pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3]
+File: Img/ampresmark.pdf Graphic file (type QTm)
+ <use  "Img/ampresmark.pdf" >
+Underfull \hbox (badness 2941) in paragraph at lines 625--645
+[][]\EU1/Avenir-Light(0)/m/sc/10.95 The Quanser experiment was set in a reasona
+bly
+ []
+
+
+AED: lastpage setting LastPage
+File: TempImg/logobris.png Graphic file (type QTm)
+<use  "TempImg/logobris.png" >
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 33.0742pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 684.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 684.
  (./Report.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 467.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 467.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 684.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 684.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1618,12 +1688,12 @@ Package logreq Info: Writing requests to 'Report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35310 strings out of 493734
- 620597 string characters out of 6146348
- 1102235 words of memory out of 5000000
- 38169 multiletter control sequences out of 15000+600000
- 17909 words of font info for 85 fonts, out of 8000000 for 9000
+ 35550 strings out of 493734
+ 624949 string characters out of 6146348
+ 1114235 words of memory out of 5000000
+ 38390 multiletter control sequences out of 15000+600000
+ 17917 words of font info for 86 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,15n,96p,10434b,1449s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,15n,96p,10434b,3380s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Report.pdf (2 pages).
+Output written on Report.pdf (5 pages).

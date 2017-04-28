@@ -16,6 +16,20 @@
   {}
 \endgroup
 
+\entry{stackcont}{online}{}
+  \field{title}{How to control a nonlinear system with a PID controller -
+  Mathematics Stack Exchange}
+  \verb{url}
+  \verb https://math.stackexchange.com/questions/1509148/how-to-control-a-nonli
+  \verb near-system-with-a-pid-controller
+  \endverb
+  \field{month}{11}
+  \field{year}{2015}
+  \field{urlday}{27}
+  \field{urlmonth}{04}
+  \field{urlyear}{2017}
+\endentry
+
 \lossort
 \endlossort
 
